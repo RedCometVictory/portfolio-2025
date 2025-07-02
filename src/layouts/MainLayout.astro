@@ -1,0 +1,28 @@
+---
+import Header from "../components/headers/Header.astro";
+import Footer from "../components/Footer.astro";
+// this is the default title if no title prop is passed into this layout
+const { title = "MC | Portfolio Blog"} = Astro.props;
+// TODO ! Since @fontsource/roboto is plain CSS, import it from JavaScript or in an .astro component layout.
+import "@fontsource/poppins";
+import "../sass/main.scss";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<!-- <title>{Astro.props.title}</title> -->
+		<title>{title}</title>
+	</head>
+	<body>
+    <Header />
+    <main class="container">
+      <slot />
+    </main>
+		<Footer/>
+	</body>
+</html>

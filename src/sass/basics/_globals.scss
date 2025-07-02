@@ -1,0 +1,77 @@
+h1 {
+  font-size: 2em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1.02em;
+}
+
+h5 {
+  font-size: .83em;
+}
+
+h6 {
+  font-size: .75em;
+}
+
+#root {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  background-color: var(--primary-color); // --- orig
+  color: var(--body-text);
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--body-text-link);
+  font-family: inherit;
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--body-text-visited);
+}
+
+// .pie {
+//   margin: -40px 0 0 0;
+//   width: 234px; // ---
+//   height: 234px; // ---
+//   & > canvas {
+//     margin: 0 0 0 6px;
+//   }
+// }
+
+
+// ##############################

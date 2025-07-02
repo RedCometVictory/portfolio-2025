@@ -1,0 +1,180 @@
+@use "../basics/sizes" as *;
+@use "../helpers/mixins" as *;
+
+.blog {
+  @include flex(column, center, center);
+  &__content {
+    width: 100%;
+    @include flex(row, space-around, flex-start);
+  }
+  &__header {
+    margin: $size-10 auto;
+    // margin: 0 auto;
+  }
+  &__left-column {
+    border: 2px rebeccapurple solid;
+    // border-radius: 18px;
+    padding: 0 $size-8 $size-8;
+    width: 60vw;
+  }
+  // &__list {
+    // border: 1px green solid;
+    // border-radius: 12px;
+  // }
+  &__list-item {
+    li {
+      background-color: var(--card-primary);
+      // overflow: hidden;
+      @include flex(row, flex-start, stretch);
+      // row-gap: $size-4;
+      // border: 2px pink solid;
+      border-radius: 12px;
+      margin: 0 auto $size-5;
+      padding: $size-4;
+    }
+  }
+  &__item-image {
+    // height: 100%;
+    // max-height: 300px;
+    width: 100%;
+    max-width: 160px;
+    flex-shrink: 0;
+    // aspect-ratio: 16 / 9;
+    // aspect-ratio: 4 / 3;
+    // aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 2;
+    // aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background-color: aqua;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &__item-info {
+    @include flex(column, flex-start, flex-start);
+    margin: 0 0 0 $size-4;
+    h2 {
+      line-height: 1.2;
+    }
+  }
+  &__item-date {
+    // margin top pushes date to bottom of lex column. Additionally needs parent to have align-items: stretch;
+    margin-top: auto;
+    font-size: $size-3;
+    font-style: italic;
+  }
+
+  &__right-column {
+    border: 2px red solid;
+    width: 26vw;
+  }
+  &__sidebar {
+    border-radius: 12px;
+    background-color: var(--card-primary);
+    padding: $size-4;
+    // background-color: var(--card-primary);
+  }
+  &__recent-posts {}
+  &__recent-posts-header {
+    h3 {
+      text-transform: uppercase;
+    }
+  }
+  &__recent-posts-list {
+    margin: $size-4 auto 0;
+  }
+  &__recent-post-item {
+    margin: $size-3 auto;
+  }
+  &__recent-post-title {
+    margin: 0 0 $size-1 0;
+    h4 {
+      line-height: 1.2;
+    }
+  }
+  &__recent-post-info {
+    @include flex(row, space-between, center);
+    span {
+      font-size: $size-3;
+      font-weight: 300;
+    }
+  }
+  &__recent-post-author {}
+  &__recent-post-date {}
+  &__ad-spot {
+    margin: $size-4 auto 0;
+    padding: $size-4;
+    // border: 1px brown solid;
+    height: 300px;
+    // width: 300px;
+  }
+}
+
+.blogPost {
+  // background-color: rgb(252, 255, 225);
+  header {
+    // background-color: rgb(252, 255, 225);
+    background-color: var(--accent-color);
+    // background-color: rgb(227, 248, 255);
+    // linear-gradient(rgba(227, 248, 255, 0.9) 90%, rgba(252, 255, 255, 0.9)),
+    background-image:
+      // linear-gradient(to bottom, rgba(227, 248, 255, 0.0) 80%, rgba(252, 255, 255, 0.9)),
+      url("/assets/patterns/always-grey.png");
+    background-repeat: repeat;
+    // background-repeat: no-repeat, repeat;
+    background-position: top left;
+    background-size: 17.5px 17.5px; // key fix here
+    // background-size: 100% 100%, 17.5px 17.5px; // key fix here
+  }
+  &__header {
+    margin: 0 auto;
+    width: 70vw;
+    @include flex(column, center, center);
+    // border: 2px solid greenyellow;
+    padding: $size-4 0 0;
+  }
+  &__category {
+    font-size: $size-3;
+    margin: 0 0 $size-4 0;
+    // width: 100%;
+    small {
+      border: 1px solid var(--body-text-link);
+      border-radius: 30px;
+      padding: 0 $size-3;
+    }
+  }
+  &__author {
+    margin: $size-8 0 0 0;
+  }
+  &__post-content {
+    // background-color: rgb(252, 255, 225);
+    margin: $size-11 auto 0;
+    padding: 0 0 $size-12;
+    width: 60vw;
+    h2 {
+      margin: $size-4 0 $size-6 0;
+    }
+    h3, h4, h5, h6 {
+      margin: $size-4 0 $size-4 0;
+    }
+    p {
+      line-height: 1.2;
+      strong {
+        font-weight: 700;
+      }
+      em {
+        font-style: italic;
+      }
+    }
+    ul {
+      margin: $size-2 0;
+      list-style: inside;
+      margin: $size-3 0;
+      li {
+        margin: 0 0 $size-1 0;
+      }
+    }
+  }
+}

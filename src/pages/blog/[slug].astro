@@ -1,0 +1,102 @@
+---
+// import type { GetStaticPaths } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogHeader from "../../components/headers/BlogHeaders.astro";
+import { imageConfig } from "astro:assets";
+import { getCollection, getEntry, render } from "astro:content";
+import { formatDateNumeric } from "../../lib/utils";
+// import { getPostBySlug } from "../../lib/server-utils";
+// import { sequence } from "astro:middleware";
+
+// generate url path for every blog collection entry
+export const getStaticPaths = async () => {
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    // params: { slug: entry.id },
+    props: { entry }
+  }));
+};
+
+// export const getStaticPaths = async () => {
+//   const blogEntries = await getCollection("blog");
+//   return blogEntries.map((post) => ({
+//     params: { slug: post.data.slug },
+//     props: { post }
+//   }));
+// };
+
+// const { slug } = Astro.params;
+
+
+// console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+// console.log("slug: ", slug)
+// console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+// get full entry (contains render method)
+// const entry = await getEntry('blog', slug as string);
+// console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+// console.log("entry: ", entry)
+// console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+// redirect or error
+// if (!entry) {
+//   throw new Error(`No Blog post found for slug: ${slug}`);
+// }
+
+// if (slug === undefined) {
+//   throw new Error(`Slug not found. It's required in your md file to have one.`);
+// }
+
+// const entry = await getEntry('blog', slug);
+// if (entry === undefined) {
+//   return Astro.redirect('/404');
+// }
+
+const { entry } = Astro.props;
+// const { entry, post } = Astro.props;
+
+// console.log("entry: ");
+// console.log(entry);
+// console.log("------------------------------")
+// console.log("------------------------------")
+// console.log("Astro")
+// console.log(Astro)
+// console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+// console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+// // !property 'render' does not exist on type 'never'
+// get rendered content
+// const { Content } = await entry.render();
+const { Content } = await render(entry);
+
+
+// import BlogLayout from "../../layouts/BlogLayout.astro";
+// import { getSortedPosts } from "../../lib/server-utils";
+
+// export async function getStaticPaths() {
+//   const posts = await getSortedPosts();
+
+//   return posts.map((post) => ({
+//     params: { slug: post.slug.split("/") }, // for catch-all route
+//     props: { entry: post },
+//   }));
+// }
+
+// const { entry } = Astro.props;
+// const { Content } = await entry.render();
+
+---
+
+<MainLayout>
+  <section class="blogPost">
+    <BlogHeader
+      title={entry.data.title}
+      category={entry.data.category}
+      author={entry.data.author}
+      published={formatDateNumeric(entry.data.published)}
+      image={entry.data.image}
+    />
+    <article class="blogPost__post-content">
+      <Content />
+    </article>
+  </section>
+</MainLayout>

@@ -1,0 +1,19 @@
+@use "../helpers/mixins" as *;
+@use "../basics/sizes" as *;
+.mainNav {
+  // border: 2px dashed red;
+  @include flex(row, center, center);
+  width: 100vw;
+  padding: $size-8 0;
+  &__container {
+    width: 100%;
+    @include flex(row, flex-end, center);
+    margin: 0 $size-12 0 0;
+    > a:not(:last-child) {
+      padding: 0 $size-10 0 0;
+    }
+    a {
+      font-size: $size-5;
+    }
+  }
+}

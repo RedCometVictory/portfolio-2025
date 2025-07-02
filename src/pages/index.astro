@@ -1,0 +1,182 @@
+---
+// import Welcome from '../components/Welcome.astro';
+// import Layout from '../layouts/Layout.astro';
+// import Card from '../components/Card.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<MainLayout title="Home">
+	<section class="hero">
+		<div class="hero__container">
+			<h1>Jor-EL Sanchez</h1>
+		</div>
+	</section>
+  <section class="about">
+		<div class="about__container">
+			<div class="about__heading">
+				<h2>About Me</h2>
+			</div>
+			<div class="about__sub-container">
+				<div class="about__left-container">
+					<div class="about__text">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut rem dolorem tenetur mollitia ullam accusamus culpa similique aliquam, reprehenderit facilis, inventore doloribus cum ad! Iure ex cumque explicabo natus iste.
+            <br/>
+            <br/>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, velit quaerat inventore amet quos soluta nisi nam dolorum ea molestiae ut non rem exercitationem sint modi nostrum, odio, delectus laudantium.
+						</p>
+					</div>
+				</div>
+				<div class="about__right-container">
+					<div class="about__image-container">
+						<p class="about__image">avatar goes here</p>
+						<!-- <img src="" alt="" class="about__image"> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="skill">
+		<div class="skill__container">
+			<div class="skill__heading">
+				<h2>Skills</h2>
+			</div>
+			<div class="skill__panel-area">
+				<div class="skill__panel-row 01">
+          <div class="skill__panel 01">
+						<div class="panel-heading">
+							<h4>HTML / CSS</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 02">
+						<div class="panel-heading">
+							<h4>HTML Email Templates</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 03">
+						<div class="panel-heading">
+							<h4>JavaScript</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 04">
+						<div class="panel-heading">
+							<h4>Klaviyo</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="skill__panel-row 02">
+          <div class="skill__panel 01">
+						<div class="panel-heading">
+							<h4>Photoshop</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 02">
+						<div class="panel-heading">
+							<h4>Litmus</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 03">
+						<div class="panel-heading">
+							<h4>Email On Acid</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+          <div class="skill__panel 04">
+						<div class="panel-heading">
+							<h4>Mailchimp</h4>
+						</div>
+						<div class="panel-icon">
+							<div class="">image goes here</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="project">
+		<div class="project__container">
+			<div class="project__heading">
+				<h2>Projects</h2>
+			</div>
+			<div class="project__content">
+				<div class="project__panel-row">
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+					<div class="project__panel 01">
+						<div class="panel-heading">
+							<h4>Project 01</h4>
+						</div>
+						<div class="project__image-container"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- <Card /> -->
+</MainLayout>
+
+<!-- <style>
+	h1 {
+		background-color: darkolivegreen;
+		min-height: 120vh;
+	}
+</style> -->
+
+<!-- <script is:inline> -->
+<script>
+	import { callMe } from "../lib/utils";
+	// // import "../lib/utils";
+	callMe();
+</script>

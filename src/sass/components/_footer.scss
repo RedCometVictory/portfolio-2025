@@ -1,0 +1,11 @@
+@use "../helpers/mixins" as *;
+@use "../basics/sizes" as *;
+
+.footer {
+  padding: $size-8;
+  @include flex(row, center, center);
+  &__container {
+    font-size: $size-3;
+    font-weight: 100;
+  }
+}

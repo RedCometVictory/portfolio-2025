@@ -1,0 +1,133 @@
+@use "../basics/sizes" as *;
+@use "../helpers/mixins" as *;
+
+.hero {
+  height: 70vh;
+  background-color: #3f30c9;
+}
+.about {
+  height: 80vh;
+  // background-color: #e192e1;
+  &__container {
+    padding: $size-8 0;
+    margin: 0 auto;
+    width: 80vw;
+  }
+  &__heading {
+    padding: 0 0 $size-11 0;
+    text-align: center;
+  }
+  &__sub-container {
+    @include flex(row, center, center);
+  }
+  &__left-container {
+    width: 50vw;
+  }
+  &__text {
+    line-height: 1.2;
+    font-size: $size-6;
+  }
+  &__right-container {
+    height: 100%;
+    width: 50vw;
+    @include flex(row, center, center);
+  }
+  &__image-container {
+    background-color: hsl(246, 61%, 49%);
+    height: 100%;
+    width: 360px;
+    border-radius: 12px;
+  }
+  &__image {
+    height: 300px;
+    width: 360px;
+  }
+}
+.skill {
+  height: 80vh;
+  // background-color: aquamarine;
+  text-align: center;
+  &__container {
+    padding: $size-8 0 $size-11;
+  }
+  &__heading {
+    padding: 0 0 $size-11 0;
+  }
+  &__panel-area {
+    @include flex(column, flex-start, center);
+    flex-wrap: wrap;
+    width: 80vw;
+    margin: 0 auto;
+  }
+  &__panel-row {
+    @include flex(row, center, center);
+    flex-wrap: wrap;
+    width: 100%;
+    gap: $size-8;
+  }
+  &__panel {
+    @include flex(column, flex-start, center);
+    background-color: var(--accent-color);
+    // 4 panels per row with 3 gaps of 2rem
+    margin:  0 0 $size-8 0;
+    width: calc((100% - 3 * 2rem) / 4);
+    height: 100%;
+    max-height: 450px;
+    // flex: 1;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+      background-color: rgb(248, 248, 244);
+      z-index: 1;
+    }
+    .panel-heading {
+      font-weight:600;
+      margin: $size-8 auto;
+    }
+    .panel-icon {
+      margin: $size-8 auto;
+    }
+  }
+
+}
+.project {
+  text-align: center;
+  // height: 90vh;
+  // background-color: chocolate;
+  &__container {
+    padding: $size-8 0 $size-11;
+  }
+  &__heading {
+    padding: 0 0 $size-11 0;
+  }
+  &__content {
+    width: 80vw;
+    margin: 0 auto;
+  }
+  &__panel-row {
+    @include flex(row, space-evenly, center);
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  &__panel {
+    width: 320px;
+    height: 440px;
+    border-radius: 12px;
+    background-color: rgb(248, 248, 244);
+  }
+}
+
+// ####################
+// ####################
+// ####################
+
+@media (max-width: 768px) {
+  .skill {
+    &__panel {
+      width: calc((100% - 1 * 2rem) / 2);
+    }
+  }
+}

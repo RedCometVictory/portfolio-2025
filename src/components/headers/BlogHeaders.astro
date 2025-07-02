@@ -1,0 +1,41 @@
+---
+import { slugify, dateFormatter } from "../../lib/utils.js";
+// const { blogTitle } = Astro.props;
+
+
+const { title, category, author = "Unknown Author", published, image } = Astro.props;
+
+console.log("props")
+console.log(Astro.props)
+
+
+---
+
+
+<header class="">
+  <div class="blogPost__header">
+    <div class="blogPost__category">
+      <small><a href={`/category/${slugify(category)}`}>{category}</a></small>
+    </div>
+    <h1>{title}</h1>
+    <div class="blogPost__author">
+      <p>by <a href={`/author/${slugify(author)}`}>{author}</a> | {dateFormatter(published)}</p>
+    </div>
+  </div>
+  {image && (
+    <img src={image} alt="">
+  )}
+</header>
+
+{/* <style lang="scss">
+  .blogPost {
+  // background-color: aquamarine;
+    &__header {
+
+      width: 60vw;
+      // @include flex(column, center, center);
+      border: 2px solid greenyellow;
+      margin: 0 auto;
+    }
+  }
+</style> */}

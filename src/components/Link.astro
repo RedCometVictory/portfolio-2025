@@ -1,0 +1,33 @@
+---
+const { href } = Astro.props;
+---
+
+<!-- <a style="display: none;" href={href}> -->
+<!--
+  <a
+    style={{
+      display: "none",
+    }}
+    href={href}
+  >
+-->
+<a href={href} class="bg-blue-400">
+  <slot />
+</a>
+
+<!-- <style>
+  a {
+    color: blue;
+  }
+</style> -->
+
+<script>
+  // whenever an anchor tag is clicked do something
+  const anchorLinks = document.querySelectorAll("a");
+
+  anchorLinks.forEach(a => {
+    a.addEventListener("click", () => {
+      console.log("clicked!");
+    });
+  });
+</script>

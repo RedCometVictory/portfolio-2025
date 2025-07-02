@@ -1,0 +1,22 @@
+---
+import { slugify, formatDatePretty, formatDateNumeric } from "../../lib/utils";
+const { title, category, author, date, image } = Astro.props;
+---
+
+
+<header>
+  <div class="container">
+    <small><a href={`/category/${slugify(category)}`}>{category}</a></small>
+    <h1>{title}</h1>
+    <p>by <a href={`/author/${slugify(author)}`}>{author}</a> | {formatDateNumeric(date)}</p>
+  </div>
+  <img src="" alt="">
+  <!-- <div class="post-content">
+    <div class="content">
+      <slot />
+    </div>
+    <div class="sidebar">
+
+    </div>
+  </div> -->
+</header>
