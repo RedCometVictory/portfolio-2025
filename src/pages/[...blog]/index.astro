@@ -1,0 +1,139 @@
+---
+// import type { GetStaticPaths } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import Paginate from "../../components/Paginate.astro";
+// import { getCollection, getEntry } from "astro:content";
+import { formatDatePretty, formatDateNumeric } from "../../lib/utils";
+import { getSortedPosts } from "../../lib/server-utils";
+
+// const title = "Blog | MC";
+// const posts = await Astro.glob("../content/blog/*.md");
+// const posts = await getCollection("blog");
+const posts = await getSortedPosts();
+
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+const layoutTitle = "MC | Blog";
+
+// const { posts } = Astro.props;
+// get the three most recent posts
+const recentPosts = posts
+  .sort((a, b) => new Date(b.data.published) - new Date(a.data.published))
+  .slice(0, 3);
+// generate url path for every blog collection entry
+// export const getStaticPaths = async () => {
+  // // const blogEntries = await getCollection("blog");
+  // const blogEntries = await getSortedPosts();
+  // return blogEntries.map((entry) => ({
+  //   params: { slug: entry.slug },
+  //   props: { entry }
+  // }));
+// };
+// const { entry } = Astro.props;
+
+// !property 'render' does not exist on type 'never'
+// const { Content } = await entry.render();
+
+---
+
+<MainLayout>
+  <section class="blog">
+    <div class="blog__header">
+      <h1>Welcome to My Blog</h1>
+    </div>
+    <div class="blog__content">
+      <div class="blog__left-column">
+        <div class="blog__list">
+          <ul>
+            {posts.map((post) => (
+              <div class="blog__list-item">
+                <li>
+                  <div class="blog__item-image">
+                    {/* <img src="" alt=""> */}
+                  </div>
+                  <div class="blog__item-info">
+                    <h2>
+                      <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+                    </h2>
+                    <div class="blog__item-date">
+                      <div>{formatDateNumeric(post.data.published)}</div>
+                    </div>
+                  </div>
+                  </li>
+              </div>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="blog__right-column">
+
+        <div class="blog__sidebar">
+          <div class="blog__recent-posts">
+            <div class="blog__recent-posts-header">
+              <h3>Recent Posts</h3>
+              <div class="blog__recent-posts-list">
+                {recentPosts.map((post) => (
+                  <div class="blog__recent-post-item 1">
+                    <div class="blog__recent-post-title">
+                      <h4>{post.data.title}</h4>
+                    </div>
+                    <div class="blog__recent-post-info">
+                      <div class="blog__recent-post-author">
+                        <span>Theodore McKinley</span>
+                      </div>
+                      <div class="blog__recent-post-date">
+                        <span>{formatDateNumeric(post.data.published)}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="blog__ad-spot">Ad goes here.</div>
+      </div>
+    </div>
+    <div class="blog__paginate">
+      <Paginate desc="Hello World!" />
+    </div>
+  </section>
+  <!-- <BlogLayout posts={posts}> -->
+    <!-- <ul>
+      {posts.map((post) => (
+        <div class="blog__list-item">
+          <li>
+            <div class="blog__item-image">
+              {/* <img src="" alt=""> */}
+            </div>
+            <div class="blog__item-info">
+              <h2>
+                <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+              </h2>
+              <div class="blog__item-date">
+                <div>{formatDateNumeric(post.data.published)}</div>
+              </div>
+            </div>
+            </li>
+        </div>
+      ))}
+    </ul> -->
+  <!-- </BlogLayout> -->
+</MainLayout>
+
+<!-- <MainLayout {title} >
+
+</MainLayout> -->
+
+<!-- <MainLayout > -->
+  <!-- <h1>Blog</h1> -->
+  <!-- <ul>
+    {posts.map((post) => (
+      <li><a href={`/blog/${post.slug}`}>{post.data.title}</a></li>
+    ))}
+  </ul>
+</MainLayout> -->

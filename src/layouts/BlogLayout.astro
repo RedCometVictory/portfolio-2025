@@ -3,20 +3,24 @@ import PostHeader from "../components/headers/PostHeader.astro";
 import MainLayout from "./MainLayout.astro";
 // import { slugify, dateFormatter } from "../lib/utils";
 import Paginate from "../components/Paginate.astro";
-import { formatDatePretty, formatDateNumeric } from "../lib/utils";
+// import { formatDatePretty, formatDateNumeric } from "../lib/utils";
 
 const layoutTitle = "MC | Blog";
 
-const { posts } = Astro.props;
+// const { posts } = Astro.props;
 // get the three most recent posts
-const recentPosts = posts
-  .sort((a, b) => new Date(b.data.published) - new Date(a.data.published))
-  .slice(0, 3);
+// const recentPosts = posts
+//   .sort((a, b) => new Date(b.data.published) - new Date(a.data.published))
+//   .slice(0, 3);
 ---
 
-
+<MainLayout>
+  <section class="blogPage__container">
+    <h1>This is the Blog Page layout</h1>
+  </section>
+</MainLayout>
 <!-- <MainLayout {layoutTitle} > -->
-  <section class="blog">
+  <!-- <section class="blog">
     <div class="blog__header">
       <h1>Welcome to My Blog</h1>
     </div>
@@ -58,4 +62,4 @@ const recentPosts = posts
     <div class="blog__paginate">
       <Paginate desc="Hello World!" />
     </div>
-  </section>
+  </section> -->
