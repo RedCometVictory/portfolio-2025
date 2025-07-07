@@ -1,0 +1,212 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getSortedPosts } from "../../lib/server-utils";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Paginate from "../../components/Paginate.astro";
+import { formatDatePretty, formatDateNumeric } from "../../lib/utils";
+
+// export const prerender = false;
+export const prerender = true;
+// const posts = await getSortedPosts();
+// export const getStaticPaths = (async () => {
+//   const posts = await getSortedPosts();
+//   return posts.map((entry) => ({
+//     params: { slug: entry.data.slug },
+//     props: { entry }
+//   }));
+// }) satisfies GetStaticPaths;
+// ++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++
+export const getStaticPaths = (async ({ paginate }) => {
+  const allPosts = await getSortedPosts();
+  console.log("allPosts.length")
+  console.log(allPosts.length)
+  return paginate(allPosts, {
+    pageSize: 10,
+    props: { allPosts }
+    // params: {}
+  })
+}) satisfies GetStaticPaths;
+
+// ++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++
+// export const getStaticPaths = async (allBlogPosts, { paginate }) => {
+// export const getStaticPaths = async ({ paginate }) => {
+//   const posts = await getSortedPosts();
+//   return paginate(posts, { pageSize: 10 })
+// };
+  // return posts.map((entry) => ({
+  //   params: { slug: entry.data.slug },
+  //   props: { entry }
+  // }));
+  // return blogEntries.map((entry) => ({
+    // params: { slug: entry.data.slug },
+    // params: { slug: entry.id },
+    // props: { entry }
+  // }));
+// };
+// const title = "Blog | MC";
+// const posts = await Astro.glob("../content/blog/*.md");
+// const posts = await getCollection("blog");
+// const posts = await getSortedPosts();
+
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~
+const layoutTitle = "MC | Blog";
+
+// const { posts } = Astro.props;
+// get the three most recent posts
+// const recentPosts = posts
+// .sort((a, b) => new Date(b.data.published) - new Date(a.data.published))
+// .slice(0, 3);
+// const recentPosts = allBlogPosts
+
+// let posts = await getSortedPosts();
+
+// const recentPosts = posts.slice(0, 3);
+  // .sort((a, b) => new Date(b.data.published) - new Date(a.data.published))
+// generate url path for every blog collection entry
+// export const getStaticPaths = async () => {
+  // // const blogEntries = await getCollection("blog");
+  // const blogEntries = await getSortedPosts();
+  // return blogEntries.map((entry) => ({
+    //   params: { slug: entry.slug },
+  //   props: { entry }
+  // }));
+// };
+
+// const { entry } = Astro.props;
+// !property 'render' does not exist on type 'never'
+// const { Content } = await entry.render();
+// const { posts } = Astro.props;
+// const { Content } = await posts.render();
+
+// const { page, data: paginatedPosts, allPosts } = Astro.props;
+// const { page, data, allPosts } = Astro.props;
+const { page, allPosts } = Astro.props;
+
+console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+console.log("Astro.props");
+console.log(Astro.props);
+// console.log(Astro.props.page);
+console.log("X==========================sX");
+console.log(Astro.props.page.data);
+console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+console.log("data")
+// console.log(data)
+const paginatedPosts = page.data;
+const currentPage = page.currentPage;
+const totalPages = page.lastPage;
+const recentPosts = allPosts.slice(0, 3);
+---
+
+<MainLayout>
+  <section class="blog">
+    <div class="blog__header">
+      <h1>Welcome to My Blog</h1>
+    </div>
+    <div class="blog__content">
+      <div class="blog__left-column">
+        <div class="blog__list">
+          <ul>
+
+            {paginatedPosts && paginatedPosts.length > 0 ? (
+              paginatedPosts.map((post) => (
+                <div class="blog__list-item">
+                  <li>
+                    <div class="blog__item-image">
+                      {/* <img src="" alt=""> */}
+                    </div>
+                    <div class="blog__item-info">
+                      <h2>
+                        <a href={`/blog/post/${post.data.slug}`}>{post.data.title}</a>
+                      </h2>
+                      <div class="blog__item-date">
+                        <div>{formatDateNumeric(post.data.published)}</div>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              ))
+            ) : (
+              <h2>No posts found.</h2>
+            )}
+              
+          </ul>
+        </div>
+      </div>
+      <div class="blog__right-column">
+
+        <div class="blog__sidebar">
+          <div class="blog__recent-posts">
+            <div class="blog__recent-posts-header">
+              <h3>Recent Posts</h3>
+              <div class="blog__recent-posts-list">
+
+                {recentPosts.map((post) => (
+                  <div class="blog__recent-post-item 1">
+                    <div class="blog__recent-post-title">
+                      <h4>
+                        <a href={`/blog/post/${post.data.slug}`}>{post.data.title}</a>
+                      </h4>
+                    </div>
+                    <div class="blog__recent-post-info">
+                      <div class="blog__recent-post-author">
+                        <span>Theodore McKinley</span>
+                      </div>
+                      <div class="blog__recent-post-date">
+                        <span>{formatDateNumeric(post.data.published)}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>  
+            </div>
+          </div>
+        </div>
+        <div class="blog__ad-spot">Ad goes here.</div>
+      </div>
+    </div>
+    <div class="blog__paginate">
+      <Paginate currentPage={currentPage} totalPages={totalPages} baseUrl="/blog" />
+    </div>
+  </section>
+  <!-- <BlogLayout posts={posts}> -->
+    <!-- <ul>
+      {posts.map((post) => (
+        <div class="blog__list-item">
+          <li>
+            <div class="blog__item-image">
+              {/* <img src="" alt=""> */}
+            </div>
+            <div class="blog__item-info">
+              <h2>
+                <a href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+              </h2>
+              <div class="blog__item-date">
+                <div>{formatDateNumeric(post.data.published)}</div>
+              </div>
+            </div>
+            </li>
+        </div>
+      ))}
+    </ul> -->
+  <!-- </BlogLayout> -->
+</MainLayout>
+
+<!-- <MainLayout {title} >
+
+</MainLayout> -->
+
+<!-- <MainLayout > -->
+  <!-- <h1>Blog</h1> -->
+  <!-- <ul>
+    {posts.map((post) => (
+      <li><a href={`/blog/${post.slug}`}>{post.data.title}</a></li>
+    ))}
+  </ul>
+</MainLayout>

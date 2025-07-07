@@ -25,12 +25,12 @@ export const getSortedPosts = async () => {
     return dateB.getTime() - dateA.getTime(); // newest first
   });
 
-  console.log("***********************")
-  console.log("***********************")
-  console.log("sortedPosts");
-  console.log(sortedPosts);
-  console.log("***********************")
-  console.log("***********************")
+  // console.log("***********************")
+  // console.log("***********************")
+  // console.log("sortedPosts");
+  // console.log(sortedPosts);
+  // console.log("***********************")
+  // console.log("***********************")
   return sortedPosts;
 };
 

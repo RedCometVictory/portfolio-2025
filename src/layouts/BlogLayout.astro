@@ -1,6 +1,7 @@
 ---
 import PostHeader from "../components/headers/PostHeader.astro";
 import MainLayout from "./MainLayout.astro";
+import BlogHeader from "../components/headers/BlogHeaders.astro";
 // import { slugify, dateFormatter } from "../lib/utils";
 import Paginate from "../components/Paginate.astro";
 // import { formatDatePretty, formatDateNumeric } from "../lib/utils";
@@ -14,11 +15,30 @@ const layoutTitle = "MC | Blog";
 //   .slice(0, 3);
 ---
 
-<MainLayout>
+<!-- <MainLayout> -->
   <section class="blogPage__container">
-    <h1>This is the Blog Page layout</h1>
+    <!-- <h1>This is the Blog Page layout</h1> -->
+    <!-- <section class="blogPost">
+      <slot />
+    </section> -->
+    <!-- <section class="blogPost"> -->
+      <div class="">
+        <!-- <BlogHeader
+          title={entry.data.title}
+          category={entry.data.category}
+          author={entry.data.author}
+          published={formatDateNumeric(entry.data.published)}
+          image={entry.data.image}
+        /> -->
+        <slot />
+
+      </div>
+      <!-- <article class="blogPost__post-content">
+        <Content />
+      </article> -->
+    <!-- </section> -->
   </section>
-</MainLayout>
+<!-- </MainLayout> -->
 <!-- <MainLayout {layoutTitle} > -->
   <!-- <section class="blog">
     <div class="blog__header">

@@ -1,9 +1,52 @@
 @use "../basics/sizes" as *;
 @use "../helpers/mixins" as *;
 
-.paginate {
-  @include flex(rwo, center, center);
+.pagination {
+  @include flex(row, center, center);
   padding: 0 0 0 0;
   border: 1px solid blue;
   margin: 0 auto;
+  padding: 0.4rem 0.8rem;
+  .arrow-icon {
+    margin-right: 0.4rem;
+    vertical-align: middle;
+    // width: 19.4584px;
+    // width: 19.4584px;
+    // width: 9.7292px;
+    // width: 12.9723px;
+    width: 15.5667px;
+    height: auto;
+    // color: darkcyan;
+    // background: #e95252;
+  }
+  &__container {
+    @include flex(row, center, center);
+    width: 100%;
+  }
+  &__list {
+    width: 100%;
+    justify-content: center;
+    li {
+      a {
+        padding: 0.4rem 0.8rem;
+        text-decoration: none;
+        // background: #eee;
+        border-radius: 5px;
+        // color: darkcyan;
+        background-color: var(--card-primary);
+        // background: #e95252;
+      }
+      a.is-active {
+        background-color: var(--card-primary-isActive);
+        color: white;
+        font-weight: bold;
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+    display: flex;
+    gap: $size-2;
+    list-style: none;
+    padding: 0;
+  }
 }

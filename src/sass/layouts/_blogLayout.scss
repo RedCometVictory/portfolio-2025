@@ -11,6 +11,9 @@
     margin: $size-10 auto;
     // margin: 0 auto;
   }
+  &__paginate {
+    width: 100%;
+  }
   &__left-column {
     border: 2px rebeccapurple solid;
     // border-radius: 18px;

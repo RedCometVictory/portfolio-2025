@@ -1,24 +1,57 @@
 ---
-// import type { GetStaticPaths } from "astro";
-import MainLayout from "../../layouts/MainLayout.astro";
-import BlogLayout from "../../layouts/BlogLayout.astro";
-import BlogHeader from "../../components/headers/BlogHeaders.astro";
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogHeader from "../../../components/headers/BlogHeaders.astro";
 import { imageConfig } from "astro:assets";
 import { getCollection, getEntry, render } from "astro:content";
-import { formatDateNumeric } from "../../lib/utils";
+import { formatDateNumeric } from "../../../lib/utils";
 // import { getPostBySlug } from "../../lib/server-utils";
 // import { sequence } from "astro:middleware";
 
-// generate url path for every blog collection entry
 export const getStaticPaths = async () => {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
     params: { slug: entry.data.slug },
+    // params: { slug: entry.data.slug.split("/") },
+    // params: { slug: entry.data },
     // params: { slug: entry.id },
     props: { entry }
   }));
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// generate url path for every blog collection entry
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// export const getStaticPaths = async () => {
+//   const blogEntries = await getCollection("blog");
+//   return blogEntries.map((entry) => ({
+//     // params: { slug: entry.data.split("/") },
+//     // params: { slug: entry.data },
+//     params: { slug: entry.id },
+//     props: { entry }
+//   }));
+// };
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // export const getStaticPaths = async () => {
 //   const blogEntries = await getCollection("blog");
 //   return blogEntries.map((post) => ({
@@ -52,7 +85,13 @@ export const getStaticPaths = async () => {
 //   return Astro.redirect('/404');
 // }
 
-const { entry } = Astro.props;
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// export const prerender = true;
+// const { entry } = Astro.props;
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // const { entry, post } = Astro.props;
 
 // console.log("entry: ");
@@ -66,8 +105,11 @@ const { entry } = Astro.props;
 // // !property 'render' does not exist on type 'never'
 // get rendered content
 // const { Content } = await entry.render();
-const { Content } = await render(entry);
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// const { Content } = await render(entry);
+// ~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~
 
 // import BlogLayout from "../../layouts/BlogLayout.astro";
 // import { getSortedPosts } from "../../lib/server-utils";
@@ -81,22 +123,26 @@ const { Content } = await render(entry);
 //   }));
 // }
 
-// const { entry } = Astro.props;
+const { entry } = Astro.props;
 // const { Content } = await entry.render();
+const { Content } = await render(entry);
 
 ---
 
 <MainLayout>
-  <section class="blogPost">
-    <BlogHeader
-      title={entry.data.title}
-      category={entry.data.category}
-      author={entry.data.author}
-      published={formatDateNumeric(entry.data.published)}
-      image={entry.data.image}
-    />
-    <article class="blogPost__post-content">
-      <Content />
-    </article>
-  </section>
+  <BlogLayout>
+    <section class="blogPost">
+      <!-- <div class="">test</div> -->
+      <BlogHeader
+        title={entry.data.title}
+        category={entry.data.category}
+        author={entry.data.author}
+        published={formatDateNumeric(entry.data.published)}
+        image={entry.data.image}
+      />
+      <article class="blogPost__post-content">
+        <Content />
+      </article>
+    </section>
+  </BlogLayout>
 </MainLayout>
